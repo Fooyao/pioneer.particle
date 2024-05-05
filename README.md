@@ -8,7 +8,6 @@ pioneer.particle注册、绑定Discord和Twitter示例
 
 ## 依赖
 
-- httpx >= 0.22.0
 - loguru >= 0.7.0
 - web3 >= 6.5.0
 - curl-cffi >= 0.6.3
