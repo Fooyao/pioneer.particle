@@ -290,8 +290,15 @@ class Account:
 
 
 async def main():
+    # private_key     EVM私钥
+    # twitter_auth_token     推特auth_token hdd.cm购买
+    # dc_token     Discord token hdd.cm购买
+    # capsolver_clientKey     capsolver的clientKey  https://dashboard.capsolver.com/passport/register?inviteCode=-6bvop_IGgaT
+
     await Account('private_key', 'twitter_auth_token', 'dc_token', 'capsolver_clientKey').login()
 
 
 if __name__ == '__main__':
+    print('号多多hdd.cm推特低至2毛')
+    print('号多多hdd.cm推特低至2毛')
     asyncio.run(main())
