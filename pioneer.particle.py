@@ -153,7 +153,7 @@ class CF:
 
 
 class Account:
-    def __init__(self, private_key: str, auth_token: str, dc_token: str, cap_clientKey: str):
+    def __init__(self, private_key: str, auth_token: str, dc_token: str, cap_clientKey: str, invite_code: str):
         self.http = AsyncSession(timeout=120, impersonate="chrome120")
         self.http.headers.update({
             "Authorization": "Basic OUMzUnRxQmNCcUJuQk5vYjo3RGJubng3QlBxOENBOFBI",
@@ -166,6 +166,7 @@ class Account:
         self.account = self.w3.eth.account.from_key(private_key)
         self.device_id = str(uuid.uuid4())
         self.macKey = "5706dd1db5aabc45c649ecc01fdac97100de8e8655715d810d0fb2080e6cea24"
+        self.invite_code = invite_code
 
     @staticmethod
     def sha256(data: dict):
@@ -219,7 +220,7 @@ class Account:
                 aaAddress = res.json()['aaAddress']
                 if referrerAddress is None:
                     logger.info(f"[{self.account.address}]没有推荐人")
-                    await self.bindReferrerAddress('JFGAZG')
+                    await self.bindReferrerAddress()
                 if twitter is None:
                     logger.info(f"[{self.account.address}]没有绑定Twitter")
                     await self.bindTwitter()
@@ -232,9 +233,9 @@ class Account:
             logger.error(f"登录失败，{e}")
             return False
 
-    async def bindReferrerAddress(self, code: str):
+    async def bindReferrerAddress(self):
         try:
-            json_data = {"code": code}
+            json_data = {"code": self.invite_code}
             res = await self.post('https://pioneer-api.particle.network/users/invitation_code', json_data)
             if 'referrerAddress' in res.text:
                 logger.info(f"[{self.account.address}]绑定推荐人成功")
@@ -294,8 +295,9 @@ async def main():
     # twitter_auth_token     推特auth_token hdd.cm购买
     # dc_token     Discord token hdd.cm购买
     # capsolver_clientKey     capsolver的clientKey  https://dashboard.capsolver.com/passport/register?inviteCode=-6bvop_IGgaT
+    # invite_code     邀请码
 
-    await Account('private_key', 'twitter_auth_token', 'dc_token', 'capsolver_clientKey').login()
+    await Account('private_key', 'twitter_auth_token', 'dc_token', 'capsolver_clientKey', 'invite_code').login()
 
 
 if __name__ == '__main__':
