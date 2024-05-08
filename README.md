@@ -3,7 +3,7 @@ pioneer.particle注册、绑定Discord和Twitter示例
 
 便宜Twitter令牌号：[hdd.cm](https://hdd.cm/)  单价低至0.2元
 
-便宜Discord单绑令牌号：[hdd.cm](https://hdd.cm/)  单价低至0.5元
+便宜Discord单绑令牌号：[hdd.cm](https://hdd.cm/)  单价低至0.4元
 
 
 ## 依赖
